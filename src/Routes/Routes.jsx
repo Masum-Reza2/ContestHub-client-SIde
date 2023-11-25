@@ -3,6 +3,7 @@ import Layout from "../Layout/Layout"
 import AllContest from "../Pages/AllContest/AllContest"
 import Home from "../Pages/Home/Home"
 import Login from "../Pages/Login/Login"
+import Register from "../Pages/Register/Register"
 
 const Routes = createBrowserRouter([
     {
@@ -13,7 +14,8 @@ const Routes = createBrowserRouter([
             { path: '/allContest', element: <AllContest /> }
         ]
     },
-    { path: '/login', element: <Login /> }
+    { path: '/login', element: <Login /> },
+    { path: '/register', element: <Register /> },
 ])
 
 export default Routes
