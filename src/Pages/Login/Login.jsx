@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
-import { BsGithub } from 'react-icons/bs';
 import { Link } from "react-router-dom";
+import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
+import { useForm } from "react-hook-form"
 
 
 /* eslint-disable react/no-unescaped-entities */
@@ -12,11 +12,22 @@ const Login = () => {
         setShowPaas(!showPaas)
     }
 
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm()
+
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
 
     return (
-        <div className="py-10 gb-img">
+        <div className="py-10">
             <div>
-                <form className="relative flex w-[90%] md:w-[60%] lg:w-[40%] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-auto py-5">
+                <form onSubmit={handleSubmit(onSubmit)} className="relative flex w-[90%] md:w-[60%] lg:w-[40%] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-auto py-5 shadow-sky-900">
 
                     {/* heading */}
                     <div className="relative mx-4 -mt-6 mb-4 grid h-16 md:h-28 place-items-center overflow-hidden rounded-xl bg-black bg-clip-border text-white shadow-lg shadow-gray-300">
@@ -29,6 +40,7 @@ const Login = () => {
                         {/* email */}
                         <div className="relative h-11 w-full min-w-[200px]">
                             <input
+                                {...register("email", { required: true })}
                                 required
                                 type="email"
                                 name="email"
@@ -47,6 +59,7 @@ const Login = () => {
                                     <AiFillEye onClick={handleTogglePass} className="absolute right-2 text-xl top-3 cursor-pointer " />
                             }
                             <input
+                                {...register("password", { required: true })}
                                 required
                                 type={showPaas ? 'text' : 'password'}
                                 name="password"
@@ -81,16 +94,7 @@ const Login = () => {
 
                 </form>
 
-                <div className="flex w-[90%] md:w-[60%] lg:w-[40%] border flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-auto py-5 mt-5">
-                    <p className="text-center font-medium my-2">or</p>
-                    <div className="w-full flex justify-center">
-                        <button className="mt-2 btn hover:bg-black rounded-md w-[90%] bg-black text-white ">Login with Google<FcGoogle className="text-2xl" /></button>
-
-                    </div>
-                    <div className="w-full flex justify-center">
-                        <button className="mt-2 btn hover:bg-black rounded-md w-[90%] bg-black text-white ">Login with GitHub<BsGithub className="text-2xl" /></button>
-                    </div>
-                </div>
+                <AdditionalLogin />
             </div>
         </div>
     )
