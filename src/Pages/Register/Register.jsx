@@ -3,6 +3,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
 import { useForm } from "react-hook-form"
+import uploadImage from "../../Utils/uploadImage";
 
 
 
@@ -19,8 +20,11 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data)
+        const image = data.image[0];
+        const photoUrl = await uploadImage(image)
+        console.log(photoUrl)
     }
 
 
@@ -55,10 +59,11 @@ const Register = () => {
                         <small className="translate-y-1">Upload profile:</small>
                         <div className="relative h-11 w-full min-w-[200px]">
                             <input
-                                {...register("photo")}
+                                required
+                                {...register("image")}
                                 type="file"
+                                accept='image/*'
                                 className="file-input file-input-bordered file-input-sm w-full" />
-
                         </div>
 
                         {/* email */}
