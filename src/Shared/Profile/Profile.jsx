@@ -1,11 +1,15 @@
 import toast from 'react-hot-toast';
 import useGlobal from '../../Hooks/useGlobal'
 import defaultProfile from '../../assets/profile/defaultprofile.jpg'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useRole from '../../Hooks/useRole';
 
 const Profile = () => {
     const { logOutUser, user } = useGlobal();
     const navigate = useNavigate();
+    const { role, isLoading } = useRole();
+    console.log(role?.role)
+
     const handleLogout = async () => {
         try {
             await logOutUser();
@@ -15,6 +19,7 @@ const Profile = () => {
             toast.error(error.message || `Oops!`)
         }
     }
+
 
     return (
         <div className="lg:mx-5">
@@ -30,7 +35,7 @@ const Profile = () => {
                             {user?.displayName || 'mr Legend!'}
                         </a>
                     </li>
-                    <li><a>Dashboard</a></li>
+                    {isLoading || <li><Link to={(role?.role === 'user' && '/dashboard/user') || (role?.role === 'creator' && '/dashboard/creator') || (role?.role === 'admin' && '/dashboard/admin')}>Dashboard</Link></li>}
                     <li onClick={handleLogout}><a>Logout</a></li>
                 </ul>
             </div>
