@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye, AiFillEyeInvisible, AiOutlineLoading } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
 import { useForm } from "react-hook-form"
@@ -9,6 +9,7 @@ import uploadImage from "../../Utils/uploadImage";
 
 /* eslint-disable react/no-unescaped-entities */
 const Register = () => {
+    const [loading, setLoading] = useState(false);
     const [showPaas, setShowPaas] = useState(false);
     const handleTogglePass = () => {
         setShowPaas(!showPaas)
@@ -21,10 +22,10 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        console.log(data)
+        setLoading(true)
         const image = data.image[0];
         const photoUrl = await uploadImage(image)
-        console.log(photoUrl)
+        setLoading(false)
     }
 
 
@@ -117,7 +118,7 @@ const Register = () => {
                             type="submit"
                             data-ripple-light="true"
                         >
-                            Register
+                            {loading ? <AiOutlineLoading className="text-white animate-spin mx-auto text-lg font-extrabold" /> : 'Register'}
                         </button>
                         <p className="mt-6 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
                             Already have an account?
