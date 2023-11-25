@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
-import useGlobal from "../../../Hooks/useGlobal"
-import feather from '../../../assets/Images/creatoeFeather-removebg-preview.png'
+import useGlobal from "../../../Hooks/useGlobal";
+import feather from '../../../assets/Images/creatoeFeather-removebg-preview.png';
 
 const CreatorHome = () => {
     const { user } = useGlobal();
@@ -15,7 +15,7 @@ const CreatorHome = () => {
                 <p className="text-2xl md:text-3xl font-bold">Participator's are waiting for something new!</p>
             </div>
             <Link className="mt-5" to={'/dashboard/creator/addContest'}>
-                <button className="btn btn-outline  btn-accent text-lg capitalize">Add contest</button>
+                <button className="btn btn-outline  btn-accent text-lg capitalize">Create contest</button>
             </Link>
         </div>
     )

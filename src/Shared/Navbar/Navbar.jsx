@@ -33,7 +33,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex-none hidden lg:block">
-                            <ul className="menu menu-horizontal">
+                            <ul className="menu menu-horizontal space-x-2">
                                 {/* Navbar menu content here */}
                                 {navLinks}
                             </ul>
@@ -47,7 +47,7 @@ const Navbar = () => {
                 </div>
                 <div className="drawer-side z-50">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-72 min-h-full bg-base-200">
+                    <ul className="menu p-4 w-72 min-h-full bg-base-200 space-y-2">
                         {/* Sidebar content here */}
                         {navLinks}
                     </ul>
