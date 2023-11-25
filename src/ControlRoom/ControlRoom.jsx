@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateEmail, updatePassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateEmail, updatePassword, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 
 
@@ -56,6 +56,11 @@ const ControlRoom = ({ children }) => {
         return deleteUser(user)
     }
 
+    //  additional logins
+    const additionalLogin = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
+
     // observer
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -81,6 +86,7 @@ const ControlRoom = ({ children }) => {
         updateUserEmail,
         updateUserPassword,
         deleteHimOrHer,
+        additionalLogin
     }
     return (
         <GlobalContext.Provider value={globalInfo}>

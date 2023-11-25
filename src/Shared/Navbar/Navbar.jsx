@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom"
 import Profile from "../Profile/Profile";
 import logo from '../../assets/profile/logo-removebg-preview.png'
+import useGlobal from "../../Hooks/useGlobal";
 
 const Navbar = () => {
 
-    const user = false;
+    const { user } = useGlobal()
 
     const navLinks = <>
         <li><NavLink to={'/'}>Home</NavLink></li>

@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { Link } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible, AiOutlineLoading } from 'react-icons/ai';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
 import { useForm } from "react-hook-form"
+import useGlobal from "../../Hooks/useGlobal";
+import toast from "react-hot-toast";
 
 
 /* eslint-disable react/no-unescaped-entities */
 const Login = () => {
+    const [loading, setLoading] = useState(false);
     const [showPaas, setShowPaas] = useState(false);
+    const { loginUser } = useGlobal();
+    const { state } = useLocation();
+    const navigate = useNavigate();
+
     const handleTogglePass = () => {
         setShowPaas(!showPaas)
     }
@@ -15,12 +22,20 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data)
+    const onSubmit = async (data) => {
+        try {
+            setLoading(true)
+            await loginUser(data?.email, data?.password);
+            setLoading(false);
+            await toast.success(`Login succesfull!`)
+            navigate(state || '/')
+        } catch (error) {
+            toast.error(error?.message || `Oops!`);
+            setLoading(false);
+        }
     }
 
 
@@ -79,7 +94,7 @@ const Login = () => {
                             type="submit"
                             data-ripple-light="true"
                         >
-                            Login
+                            {loading ? <AiOutlineLoading className="text-white animate-spin mx-auto text-lg font-extrabold" /> : 'Login'}
                         </button>
                         <p className="mt-6 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
                             Don't have an account?

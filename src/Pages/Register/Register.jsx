@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible, AiOutlineLoading } from 'react-icons/ai';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
 import { useForm } from "react-hook-form"
 import uploadImage from "../../Utils/uploadImage";
-
-
+import useGlobal from "../../Hooks/useGlobal";
+import usePublicAxios from "../../Hooks/usePublicAxios";
+import toast from "react-hot-toast";
 
 /* eslint-disable react/no-unescaped-entities */
 const Register = () => {
+    const { createAccount, updateUserProfile, logOutUser } = useGlobal();
     const [loading, setLoading] = useState(false);
     const [showPaas, setShowPaas] = useState(false);
+    const publicAxios = usePublicAxios();
+
     const handleTogglePass = () => {
         setShowPaas(!showPaas)
     }
+    const navigate = useNavigate();
 
     const {
         register,
@@ -24,8 +29,33 @@ const Register = () => {
     const onSubmit = async (data) => {
         setLoading(true)
         const image = data.image[0];
-        const photoUrl = await uploadImage(image)
-        setLoading(false)
+        try {
+            const photoUrl = await uploadImage(image)
+
+            // creating user
+            await createAccount(data.email, data.password)
+
+            // profile update
+            await updateUserProfile(data.name, photoUrl)
+
+            // DB activities | remember only admin can toggle the role
+            const userInfo = {
+                email: data.email,
+                name: data.name,
+                role: 'user',
+                promotionRequest: null,
+            }
+            await publicAxios.post(`/users`, userInfo)
+            // DB activities | remember only admin can toggle the role
+
+            await toast.success(`Account created successfully!`)
+            setLoading(false);
+            navigate('/login');
+            await logOutUser();
+        } catch (error) {
+            await toast.error(`Oops! ${error?.message}.`);
+            setLoading(false)
+        }
     }
 
 
