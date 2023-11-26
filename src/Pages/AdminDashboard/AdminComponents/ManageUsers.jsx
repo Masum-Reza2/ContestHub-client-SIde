@@ -3,7 +3,7 @@ import useAllUsers from "../../../Hooks/useAllUsers"
 import AllUsersRow from "./AllUsersRow";
 
 const ManageUsers = () => {
-    const { allUsers, refetch, isPending } = useAllUsers();
+    const { allUsers, isPending } = useAllUsers();
 
 
     if (isPending) return <Spinner />
