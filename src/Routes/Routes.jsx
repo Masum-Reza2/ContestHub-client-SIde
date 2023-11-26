@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute"
 import AddContest from "../Pages/CreatorDashboard/creatorComponents/AddContest"
 import MyCreations from "../Pages/CreatorDashboard/creatorComponents/MyCreations"
 import CreatorHome from "../Pages/CreatorDashboard/creatorComponents/CreatorHome"
+import UpdateContest from "../Pages/CreatorDashboard/creatorComponents/UpdateContest"
 
 
 const Routes = createBrowserRouter([
@@ -41,7 +42,8 @@ const Routes = createBrowserRouter([
         children: [
             { index: true, element: <CreatorHome /> },
             { path: 'addContest', element: <AddContest /> },
-            { path: 'myCreations', element: <MyCreations /> }
+            { path: 'myCreations', element: <MyCreations /> },
+            { path: 'updateContest/:id', element: <UpdateContest /> }
         ]
     },
 

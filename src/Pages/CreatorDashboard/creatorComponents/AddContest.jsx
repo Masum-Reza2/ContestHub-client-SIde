@@ -21,7 +21,6 @@ const AddContest = () => {
 
     const onSubmit = async (data) => {
         setLoading(true)
-        console.log(data)
 
         const image = data.image[0];
         try {
@@ -52,12 +51,13 @@ const AddContest = () => {
                 });
                 reset();
                 navigate(`/dashboard/creator/myCreations`)
+                setLoading(false)
             }
         } catch (error) {
             toast.error(error.message || 'Oops')
+            setLoading(false)
         }
 
-        setLoading(false)
     }
 
     return (
