@@ -16,8 +16,11 @@ const AdditionalLogin = () => {
     const afterLogin = async (userInfo) => {
         try {
             await publicAxios.post(`/users`, userInfo)
-            navigate(state || '/')
-            toast.success(`login successfull!`)
+            navigate(state || '/');
+            toast.success(`login successfull!`);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } catch (error) {
             toast.error(error.message || 'Oops!')
         }

@@ -15,7 +15,7 @@ const CreatorHome = () => {
                 <p className="text-2xl md:text-3xl font-bold">Participator's are waiting for something new!</p>
             </div>
             <Link className="mt-5" to={'/dashboard/creator/addContest'}>
-                <button className="btn btn-outline  btn-accent text-lg capitalize">Create contest</button>
+                <button className="btn btn-outline text-lg capitalize">Create contest</button>
             </Link>
         </div>
     )

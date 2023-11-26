@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query"
 import useGlobal from "../../../Hooks/useGlobal"
 import useSecureAxios from "../../../Hooks/useSecureAxios";
 import CreationTableRow from "./CreationTableRow";
+import Spinner from "../../../Components/Spinner";
 
 const MyCreations = () => {
     const { user } = useGlobal();
     const secureAxios = useSecureAxios();
-    const { data = [], refetch } = useQuery({
+    const { data = [], refetch, isPending } = useQuery({
         queryKey: ['specificContests', user?.email],
         queryFn: async () => {
             if (user) {
@@ -16,6 +17,7 @@ const MyCreations = () => {
         }
     })
 
+    if (isPending) return <Spinner />
     return (
         <div>
             <h1 className="text-center font-semibold text-lg md:text-xl">You have created {data?.length} contests.</h1>

@@ -22,7 +22,6 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
     } = useForm()
 
     const onSubmit = async (data) => {
@@ -32,6 +31,9 @@ const Login = () => {
             setLoading(false);
             await toast.success(`Login succesfull!`)
             navigate(state || '/')
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000);
         } catch (error) {
             toast.error(error?.message || `Oops!`);
             setLoading(false);

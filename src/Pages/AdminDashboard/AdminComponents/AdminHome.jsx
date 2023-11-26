@@ -13,7 +13,7 @@ const AdminHome = () => {
                 <p className="text-2xl md:text-3xl font-bold">Let's have a look at the discipline!</p>
             </div>
             <Link className="mt-5" to={'/dashboard/admin/manageUsers'}>
-                <button className="btn btn-outline  btn-accent text-lg capitalize">Manage users</button>
+                <button className="btn btn-outline  text-lg capitalize">Manage users</button>
             </Link>
         </div>
     )
