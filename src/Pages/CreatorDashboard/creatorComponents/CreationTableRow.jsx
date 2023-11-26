@@ -60,7 +60,7 @@ const CreationTableRow = ({ contest, index, refetch }) => {
     }
 
     return (
-        <tr className="overflow-x-scroll">
+        <tr className="overflow-x-scroll bg-red-50">
             <th>
                 {index + 1}
             </th>

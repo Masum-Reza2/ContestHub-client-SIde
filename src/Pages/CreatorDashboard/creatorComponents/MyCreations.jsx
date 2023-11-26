@@ -24,7 +24,7 @@ const MyCreations = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="bg-gray-600 text-white">
                         <tr>
                             <th>
                             </th>
