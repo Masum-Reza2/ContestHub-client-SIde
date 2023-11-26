@@ -19,7 +19,7 @@ const CreatorDashboard = () => {
                 <label htmlFor="my-drawer-2" className="lg:hidden fixed mt-3 ml-3 transition-all duration-100 bg-sky-300 p-2 rounded-md">
                     <AiOutlineMenu className="text-2xl" />
                 </label>
-                <div className="drawer-content pt-14 lg:pt-5 lg:py-5 overflow-x-auto">
+                <div className="drawer-content pt-14 lg:pt-3 lg:py-5 overflow-x-auto">
                     {/* Page content here */}
                     <Outlet />
                 </div>
