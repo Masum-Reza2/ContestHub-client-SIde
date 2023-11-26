@@ -14,6 +14,9 @@ import AddContest from "../Pages/CreatorDashboard/creatorComponents/AddContest"
 import MyCreations from "../Pages/CreatorDashboard/creatorComponents/MyCreations"
 import CreatorHome from "../Pages/CreatorDashboard/creatorComponents/CreatorHome"
 import UpdateContest from "../Pages/CreatorDashboard/creatorComponents/UpdateContest"
+import AdminHome from "../Pages/AdminDashboard/AdminComponents/AdminHome"
+import ManageUsers from "../Pages/AdminDashboard/AdminComponents/ManageUsers"
+import ManageContests from "../Pages/AdminDashboard/AdminComponents/ManageContests"
 
 
 const Routes = createBrowserRouter([
@@ -52,7 +55,9 @@ const Routes = createBrowserRouter([
         path: '/dashboard/admin',
         element: <AdminRoute><AdminDashboard /></AdminRoute>,
         children: [
-
+            { index: true, element: <AdminHome /> },
+            { path: 'manageUsers', element: <ManageUsers /> },
+            { path: 'manageContest', element: <ManageContests /> }
         ]
     },
 
