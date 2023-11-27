@@ -23,6 +23,7 @@ import GlobalProfile from "../Components/GlobalProfile"
 import Settings from "../Components/Settings"
 import UserHome from "../Pages/UserDashboard/UserComponents/UserHome"
 import ContestDetails from "../Components/ContestDetails"
+import Payment from "../Payments/Payment"
 
 
 const Routes = createBrowserRouter([
@@ -32,7 +33,8 @@ const Routes = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: '/allContest', element: <AllContest /> },
-            { path: '/details/:id', element: <PrivateRoute><ContestDetails /></PrivateRoute> }
+            { path: '/details/:id', element: <PrivateRoute><ContestDetails /></PrivateRoute> },
+            { path: '/payment/:id', element: <Payment /> }
         ]
     },
 
