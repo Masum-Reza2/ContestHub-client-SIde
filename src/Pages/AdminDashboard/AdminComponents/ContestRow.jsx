@@ -10,6 +10,7 @@ const ContestRow = ({ index, contest }) => {
     const { refetch } = useAllContests();
     const { creatorName, contestName, contestPrice, prizeMoney, status, _id } = contest;
 
+    // delete
     const handleDelete = async () => {
         Swal.fire({
             title: "Are you sure?",
@@ -43,6 +44,43 @@ const ContestRow = ({ index, contest }) => {
         });
     }
 
+    // approve
+    const handleApprove = async () => {
+        if (status === 'approved') {
+            return toast.error(`ALready approved!`);
+        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You are going to approve contest ${contestName}.`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, approve it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const res = await secureAxios.put(`/contestsAdmin/${_id}`, { newStatus: 'approved' })
+                    if (res?.data?.modifiedCount) {
+                        refetch();
+                        Swal.fire({
+                            title: "Approved!",
+                            text: `Approved contest ${contestName}.`,
+                            icon: "success"
+                        });
+                    }
+                } catch (error) {
+                    toast.error(error?.message || 'Oops!')
+                }
+            } else {
+                Swal.fire({
+                    title: "Cancelled!",
+                    icon: "error"
+                });
+            }
+        });
+    }
+
     return (
         <tr>
             <th>
@@ -53,7 +91,7 @@ const ContestRow = ({ index, contest }) => {
             <td>${contestPrice}</td>
             <td>${prizeMoney}</td>
             <td className={`font-bold ${status === 'pending' ? 'text-red-600' : 'text-green-600'}`}>
-                <button className="btn btn-sm btn-ghost">{status}</button>
+                <button onClick={handleApprove} className="btn btn-sm btn-ghost">{status}</button>
             </td>
             <td>
                 <button onClick={handleDelete} className="btn btn-ghost btn-sm">

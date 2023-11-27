@@ -17,6 +17,11 @@ import UpdateContest from "../Pages/CreatorDashboard/creatorComponents/UpdateCon
 import AdminHome from "../Pages/AdminDashboard/AdminComponents/AdminHome"
 import ManageUsers from "../Pages/AdminDashboard/AdminComponents/ManageUsers"
 import ManageContests from "../Pages/AdminDashboard/AdminComponents/ManageContests"
+import UserParticipations from "../Pages/UserDashboard/UserComponents/UserParticipations"
+import UserWinnings from "../Pages/UserDashboard/UserComponents/UserWinnings"
+import GlobalProfile from "../Components/GlobalProfile"
+import Settings from "../Components/Settings"
+import UserHome from "../Pages/UserDashboard/UserComponents/UserHome"
 
 
 const Routes = createBrowserRouter([
@@ -34,7 +39,11 @@ const Routes = createBrowserRouter([
         path: '/dashboard/user',
         element: <PrivateRoute><DashboardUser /></PrivateRoute>,
         children: [
-
+            { index: true, element: <UserHome /> },
+            { path: 'participations', element: <UserParticipations /> },
+            { path: 'winnings', element: <UserWinnings /> },
+            { path: 'profile/:user', element: <GlobalProfile /> },
+            { path: 'settings/:user', element: <Settings /> },
         ]
     },
 
@@ -46,7 +55,9 @@ const Routes = createBrowserRouter([
             { index: true, element: <CreatorHome /> },
             { path: 'addContest', element: <AddContest /> },
             { path: 'myCreations', element: <MyCreations /> },
-            { path: 'updateContest/:id', element: <UpdateContest /> }
+            { path: 'updateContest/:id', element: <UpdateContest /> },
+            { path: 'profile/:user', element: <GlobalProfile /> },
+            { path: 'settings/:user', element: <Settings /> },
         ]
     },
 
@@ -57,11 +68,11 @@ const Routes = createBrowserRouter([
         children: [
             { index: true, element: <AdminHome /> },
             { path: 'manageUsers', element: <ManageUsers /> },
-            { path: 'manageContest', element: <ManageContests /> }
+            { path: 'manageContest', element: <ManageContests /> },
+            { path: 'profile/:user', element: <GlobalProfile /> },
+            { path: 'settings/:user', element: <Settings /> },
         ]
     },
-
-
 
     { path: '/login', element: <Login /> },
     { path: '/register', element: <Register /> },

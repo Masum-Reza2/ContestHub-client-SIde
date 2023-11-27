@@ -2,6 +2,8 @@ import { AiFillHome, AiOutlineMenu } from "react-icons/ai"
 import { NavLink, Outlet } from "react-router-dom";
 import { IoIosAddCircle } from "react-icons/io";
 import { FaListCheck } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
+import { GiAutoRepair } from "react-icons/gi";
 
 
 const CreatorDashboard = () => {
@@ -28,6 +30,10 @@ const CreatorDashboard = () => {
                     <ul className="menu p-4 w-72 min-h-full bg-base-200 text-base-content space-y-2">
                         {/* Sidebar content here */}
                         {navLinks}
+                        <div className="absolute bottom-3 w-full left-0 space-y-2">
+                            <li><NavLink to={'/dashboard/user/profile/user'}><CgProfile className="text-xl" />Profile</NavLink></li>
+                            <li><NavLink to={'/dashboard/user/settings/user'}><GiAutoRepair className="text-xl" />Settings</NavLink></li>
+                        </div>
                     </ul>
 
                 </div>

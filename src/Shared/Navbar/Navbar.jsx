@@ -4,7 +4,6 @@ import logo from '../../assets/profile/logo-removebg-preview.png'
 import useGlobal from "../../Hooks/useGlobal";
 
 const Navbar = () => {
-
     const { user } = useGlobal()
 
     const navLinks = <>
