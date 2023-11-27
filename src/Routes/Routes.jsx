@@ -22,6 +22,7 @@ import UserWinnings from "../Pages/UserDashboard/UserComponents/UserWinnings"
 import GlobalProfile from "../Components/GlobalProfile"
 import Settings from "../Components/Settings"
 import UserHome from "../Pages/UserDashboard/UserComponents/UserHome"
+import ContestDetails from "../Components/ContestDetails"
 
 
 const Routes = createBrowserRouter([
@@ -30,7 +31,8 @@ const Routes = createBrowserRouter([
         element: <Layout />,
         children: [
             { index: true, element: <Home /> },
-            { path: '/allContest', element: <AllContest /> }
+            { path: '/allContest', element: <AllContest /> },
+            { path: '/details/:id', element: <PrivateRoute><ContestDetails /></PrivateRoute> }
         ]
     },
 
