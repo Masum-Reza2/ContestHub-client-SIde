@@ -33,7 +33,7 @@ const ControlRoom = ({ children }) => {
 
     // 4 updateUserProfile
     const updateUserProfile = (name, imageUrl) => {
-        setLoading(true);
+        // setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: imageUrl

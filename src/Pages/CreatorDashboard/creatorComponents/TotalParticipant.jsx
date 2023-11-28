@@ -35,6 +35,7 @@ const TotalParticipant = () => {
                             <th>Participant Name</th>
                             <th>Email</th>
                             <th>Task submission</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

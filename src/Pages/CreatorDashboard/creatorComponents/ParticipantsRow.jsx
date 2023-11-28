@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-import useGlobal from "../../../Hooks/useGlobal";
 import useSecureAxios from "../../../Hooks/useSecureAxios"
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
@@ -9,7 +8,6 @@ const ParticipantsRow = ({ participant, index, refetch }) => {
     const { contestName, name, email, isWin, _id } = participant
     const secureAxios = useSecureAxios();
     const { id } = useParams();
-    const { user } = useGlobal();
 
     const handleWinner = async () => {
         Swal.fire({
@@ -62,6 +60,9 @@ const ParticipantsRow = ({ participant, index, refetch }) => {
             </td>
             <td>
                 {email}
+            </td>
+            <td>
+                <button className="btn btn-xs">View Task</button>
             </td>
             <td className={`${isWin ? 'text-green-600' : 'text-red-600'} font-bold`}>
                 {isWin ? <>winner</> : <>pending</>}

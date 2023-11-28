@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSecureAxios from "../Hooks/useSecureAxios";
 import { AiOutlineLoading } from "react-icons/ai";
-import toast from "react-hot-toast";
 
 const CheckoutForm = ({ payContest }) => {
     const [loading, setLoading] = useState(false)
