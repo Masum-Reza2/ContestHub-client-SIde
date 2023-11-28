@@ -4,11 +4,21 @@ import Countdown from 'react-countdown';
 import useSecureAxios from "../Hooks/useSecureAxios";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import WinnerCard from "./WinnerCard";
 
 
 const ContestDetails = () => {
     const { id } = useParams();
     const secureAxios = useSecureAxios();
+
+    // checking if already any winner 
+    const { data: mrWinner = [] } = useQuery({
+        queryKey: ['lucky man'],
+        queryFn: async () => {
+            const res = await secureAxios.get(`/getWinner/${id}`)
+            return res?.data
+        }
+    })
 
     const { data: details = {}, isPending } = useQuery({
         queryKey: ['singleContest'],
@@ -18,14 +28,14 @@ const ContestDetails = () => {
         }
     })
 
-    const { contestName, photoUrl, participateCount, contestTask, description, contestPrice, prizeMoney, deadline, contestType } = details;
+    const { contestName, photoUrl, participateCount, contestTask, description, contestPrice, prizeMoney, deadline, contestType, _id } = details;
 
     const futureDate = new Date(deadline);
     const currentDate = new Date();
     const timeDifference = futureDate.getTime() - currentDate.getTime();
 
     if (timeDifference <= 0) {
-        secureAxios.get('/setWinner')
+        secureAxios.get(`/setWinner/${_id}`)
             .then(res => console.log(res?.data));
     }
 
@@ -44,16 +54,16 @@ const ContestDetails = () => {
             <h1 className="text-center text-xl md:text-2xl font-semibold py-5">{contestName}</h1>
 
             {
-                timeDifference ?
+                timeDifference && !mrWinner[0]?.isWin ?
                     <p className="text-center font-bold text-2xl pb-5">
                         Ends in : <Countdown date={Date.now() + timeDifference} />
                     </p>
                     :
-                    <p className="text-center font-bold text-2xl pb-5 text-red-600">Contest Closed</p>
+                    <p className="text-center font-bold text-2xl pb-5 text-red-600">Contest Closed!</p>
             }
 
             {
-                timeDifference ?
+                timeDifference && !mrWinner[0]?.isWin ?
                     <div className="flex flex-col items-center justify-center border shadow-md shadow-indigo-900">
                         <div className="py-5 space-y-2 font-semibold">
                             <p className="border px-10 md:px-16 shadow-sm shadow-black">Contest Type : {contestType}</p>
@@ -63,7 +73,10 @@ const ContestDetails = () => {
                         </div>
                     </div>
                     :
-                    <p>winner is mr x</p>
+                    <div className="flex flex-col items-center justify-center px-2 gap-3">
+                        <h1 className="font-bold text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">The Winner!</h1>
+                        <WinnerCard mrWinner={mrWinner[0]} />
+                    </div>
             }
 
             <div className="flex flex-col gap-5 md:flex-row py-5 px-2">
@@ -78,8 +91,8 @@ const ContestDetails = () => {
             </div>
 
             <div className="text-center pb-5">
-                <Link onClick={handleTimeDeff} to={timeDifference ? `/payment/${id}` : '/'}>
-                    <button disabled={!timeDifference} className="btn btn-block btn-success text-gray-900 text-lg">Registration</button>
+                <Link onClick={handleTimeDeff} to={timeDifference && !mrWinner[0]?.isWin ? `/payment/${id}` : '/'}>
+                    <button disabled={!timeDifference || mrWinner[0]?.isWin} className="btn btn-block btn-success text-gray-900 text-lg">Registration</button>
                 </Link>
             </div>
 
