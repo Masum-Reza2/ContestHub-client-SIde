@@ -2,17 +2,17 @@ import { FaEdit } from "react-icons/fa";
 import useGlobal from "../Hooks/useGlobal"
 import useRole from "../Hooks/useRole";
 import { Link } from "react-router-dom";
+import UserLossWinRatio from "./UserLossWinRatio";
+import Spinner from "./Spinner";
 
 const GlobalProfile = () => {
     const { user } = useGlobal();
-    const { role, isLoading } = useRole()
+    const { role, isLoading } = useRole();
+
+    if (isLoading) return <Spinner />
     return (
         <div className="px-2">
             <div className="relative flex flex-col text-gray-700  shadow-md shadow-indigo-900 rounded-xl bg-clip-border">
-                {/* <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg h-80 rounded-xl bg-clip-border">
-                    <img className="mx-auto max-w-md object-cover rounded-full" src={user?.photoURL} alt="profile-picture" />
-                </div> */}
-
                 <div>
                     <img className="mx-auto w-52 h-52 md:w-96 md:h-96 max-w-md object-cover rounded-full" src={user?.photoURL} alt="profile-picture" />
                 </div>
@@ -47,6 +47,11 @@ const GlobalProfile = () => {
                     </a>
                 </div>
             </div>
+
+            {
+                role?.role === 'user' && <UserLossWinRatio />
+            }
+
         </div>
     )
 }
