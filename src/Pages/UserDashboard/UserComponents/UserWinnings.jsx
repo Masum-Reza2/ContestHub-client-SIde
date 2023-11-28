@@ -59,7 +59,7 @@ const UserWinnings = () => {
                     :
                     <div className="flex flex-col items-center justify-center min-h-[90vh]">
                         <img className="h-[98vh] w-full object-cover" src={sad} alt="" />
-                        <h1 className="text-xl md:text-2xl font-bold px-5 text-center absolute top-16 md:top-20 lg:top-5 text-white">Oops you never win any contest yet!</h1>
+                        <h1 className="text-xl md:text-2xl font-bold px-5 text-center absolute top-16 md:top-20 lg:top-5 text-orange-300">Oops! you never win any contest yet.</h1>
                     </div>
             }
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSecureAxios from "../Hooks/useSecureAxios";
 import { AiOutlineLoading } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 const CheckoutForm = ({ payContest }) => {
     const [loading, setLoading] = useState(false)
@@ -35,6 +36,13 @@ const CheckoutForm = ({ payContest }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (user?.email === payContest?.creatorEmail) {
+            return Swal.fire({
+                title: "Oops!",
+                text: "You are the owner of this contest!",
+                icon: "info"
+            });
+        }
         Swal.fire({
             title: "Are you sure?",
             text: `You are going to pay $${price}`,
