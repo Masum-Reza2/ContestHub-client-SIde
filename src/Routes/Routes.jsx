@@ -24,6 +24,7 @@ import Settings from "../Components/Settings"
 import UserHome from "../Pages/UserDashboard/UserComponents/UserHome"
 import ContestDetails from "../Components/ContestDetails"
 import Payment from "../Payments/Payment"
+import TotalParticipant from "../Pages/CreatorDashboard/creatorComponents/TotalParticipant"
 
 
 const Routes = createBrowserRouter([
@@ -60,6 +61,7 @@ const Routes = createBrowserRouter([
             { path: 'addContest', element: <AddContest /> },
             { path: 'myCreations', element: <MyCreations /> },
             { path: 'updateContest/:id', element: <UpdateContest /> },
+            { path: 'participants/:id', element: <TotalParticipant /> },
             { path: 'profile/:user', element: <GlobalProfile /> },
             { path: 'settings/:user', element: <Settings /> },
         ]

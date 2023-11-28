@@ -88,7 +88,9 @@ const CreationTableRow = ({ contest, index, refetch }) => {
                 </div>
             </td>
             <th>
-                <button className="btn btn-ghost btn-xs md:btn-sm">details</button>
+                <Link to={`/dashboard/creator/participants/${_id}`}>
+                    <button className="btn btn-ghost btn-xs md:btn-sm">details</button>
+                </Link>
             </th>
         </tr>
     )

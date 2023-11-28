@@ -4,6 +4,7 @@ import defaultProfile from '../../assets/profile/defaultprofile.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import useRole from '../../Hooks/useRole';
 import { AiOutlineLoading } from 'react-icons/ai';
+import Swal from 'sweetalert2';
 
 const Profile = () => {
     const { logOutUser, user } = useGlobal();
@@ -11,13 +12,24 @@ const Profile = () => {
     const { role, isLoading } = useRole();
 
     const handleLogout = async () => {
-        try {
-            await logOutUser();
-            navigate('/login')
-            toast.success(`Logout Successfull!`);
-        } catch (error) {
-            toast.error(error.message || `Oops!`)
-        }
+        Swal.fire({
+            title: "Confirm log out?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "logout"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await logOutUser();
+                    navigate('/login')
+                    toast.success(`Logout Successfull!`);
+                } catch (error) {
+                    toast.error(error.message || `Oops!`)
+                }
+            }
+        });
     }
 
 

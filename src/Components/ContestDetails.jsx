@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const ContestDetails = () => {
     const { id } = useParams();
     const secureAxios = useSecureAxios();
+
     const { data: details = {}, isPending } = useQuery({
         queryKey: ['singleContest'],
         queryFn: async () => {
@@ -23,6 +24,11 @@ const ContestDetails = () => {
     const currentDate = new Date();
     const timeDifference = futureDate.getTime() - currentDate.getTime();
 
+    if (timeDifference <= 0) {
+        secureAxios.get('/setWinner')
+            .then(res => console.log(res?.data));
+    }
+
     const handleTimeDeff = () => {
         if (!timeDifference) {
             return toast.error(`Oops you are late! the door is closed now.`)
@@ -36,9 +42,16 @@ const ContestDetails = () => {
                 <img className="h-full w-full object-cover" src={photoUrl} alt="" />
             </div>
             <h1 className="text-center text-xl md:text-2xl font-semibold py-5">{contestName}</h1>
-            <p className="text-center font-bold text-2xl pb-5">
-                Deadline : <Countdown date={Date.now() + timeDifference} />
-            </p>
+
+            {
+                timeDifference ?
+                    <p className="text-center font-bold text-2xl pb-5">
+                        Ends in : <Countdown date={Date.now() + timeDifference} />
+                    </p>
+                    :
+                    <p className="text-center font-bold text-2xl pb-5 text-red-600">Contest Closed</p>
+            }
+
             {
                 timeDifference ?
                     <div className="flex flex-col items-center justify-center border shadow-md shadow-indigo-900">
@@ -50,7 +63,7 @@ const ContestDetails = () => {
                         </div>
                     </div>
                     :
-                    <p>winner declered</p>
+                    <p>winner is mr x</p>
             }
 
             <div className="flex flex-col gap-5 md:flex-row py-5 px-2">
@@ -65,8 +78,8 @@ const ContestDetails = () => {
             </div>
 
             <div className="text-center pb-5">
-                <Link to={timeDifference ? `/payment/${id}` : '/'}>
-                    <button onClick={handleTimeDeff} disabled={!timeDifference} className="btn btn-block btn-success text-gray-900 text-lg">Registration</button>
+                <Link onClick={handleTimeDeff} to={timeDifference ? `/payment/${id}` : '/'}>
+                    <button disabled={!timeDifference} className="btn btn-block btn-success text-gray-900 text-lg">Registration</button>
                 </Link>
             </div>
 

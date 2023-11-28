@@ -35,114 +35,137 @@ const CheckoutForm = ({ payContest }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setLoading(true)
-        if (!stripe || !elements) {
-            return;
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You are going to pay $${price}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm Payment"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setLoading(true)
+                if (!stripe || !elements) {
+                    return;
+                }
 
 
-        const card = elements.getElement(CardElement);
+                const card = elements.getElement(CardElement);
 
-        if (card == null) {
-            return;
-        }
+                if (card == null) {
+                    return;
+                }
 
-        // Use your card Element with other Stripe.js APIs
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
-            card,
-        });
+                // Use your card Element with other Stripe.js APIs
+                const { error, paymentMethod } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card,
+                });
 
-        if (error) {
-            console.log('[error]', error);
-            setError(error.message)
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-            setError('')
-        }
+                if (error) {
+                    console.log('[error]', error);
+                    setError(error.message)
+                } else {
+                    console.log('[PaymentMethod]', paymentMethod);
+                    setError('')
+                }
 
-        // >>>>>>>>>Confirm card payment from another doc in the same web
-        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: user?.displayName || 'anonymous',
-                        email: user?.email || 'anonymous',
+                // >>>>>>>>>Confirm card payment from another doc in the same web
+                const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+                    clientSecret,
+                    {
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: user?.displayName || 'anonymous',
+                                email: user?.email || 'anonymous',
+                            },
+                        },
                     },
-                },
-            },
-        );
+                );
 
-        if (confirmError) {
-            console.log('confirm error', confirmError)
-        } else {
-            console.log('payment intent', paymentIntent)
-            if (paymentIntent.status === 'succeeded') {
-                console.log(paymentIntent.id);
-                setTransactionId(paymentIntent.id);
-                setPaymentSuccess(true);
+                if (confirmError) {
+                    console.log('confirm error', confirmError)
+                } else {
+                    console.log('payment intent', paymentIntent)
+                    if (paymentIntent.status === 'succeeded') {
+                        console.log(paymentIntent.id);
+                        setTransactionId(paymentIntent.id);
+                        setPaymentSuccess(true);
 
-                // saving payment history on the database
-                const paymentInfo = {
-                    email: user?.email,
-                    name: user?.displayName,
-                    img: user?.photoURL,
-                    price,
-                    transactionId: paymentIntent.id,
-                    date: new Date(),
-                    contestId: payContest?._id,
-                    isWin: false,
+                        // saving payment history on the database
+                        const paymentInfo = {
+                            contestName: payContest?.contestName,
+                            contestType: payContest?.contestType,
+                            creatorEmail: payContest?.creatorEmail,
+                            email: user?.email,
+                            name: user?.displayName,
+                            img: user?.photoURL,
+                            price,
+                            transactionId: paymentIntent.id,
+                            date: new Date(),
+                            contestId: payContest?._id,
+                            isWin: false,
+                        }
+
+                        // saving to data base
+                        const dbResult = await secureAxios.post('/payments', paymentInfo)
+                        if (dbResult?.data?.insertedId) {
+                            setLoading(false)
+                            await Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `Successfully paid $${price}`,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/dashboard/user/participations');
+                        }
+                    }
                 }
-
-                // saving to data base
-                const dbResult = await secureAxios.post('/payments', paymentInfo)
-                if (dbResult?.data?.insertedId) {
-                    setLoading(false)
-                    await Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: `Successfully paid $${price}`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate('/dashboard/user/participations');
-                }
+            } else {
+                Swal.fire({
+                    title: "Cancelled!",
+                    text: "Payment cancelled!",
+                    icon: "info"
+                });
             }
-        }
+        });
     };
 
 
     return (
-        <form onSubmit={handleSubmit} className="w-[90%] md:w-[70%] mx-auto mt-5">
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <div className="flex items-center justify-center min-h-[80vh]">
+            <form onSubmit={handleSubmit} className="w-[90%] md:w-[70%] mx-auto">
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            {price ?
-                <button className="btn btn-sm btn-primary my-4 btn-block" type="submit" disabled={!stripe || paymentSucces}>
-                    {paymentSucces ? 'Paid' : 'Pay'} {loading && <AiOutlineLoading className="text-white animate-spin mx-auto text-lg font-extrabold" />}
-                </button>
-                : <button className="btn btn-sm btn-primary btn-block my-4" disabled>
-                    No items
-                </button>}
+                    }}
+                />
+                {price ?
+                    <button className="btn btn-sm btn-primary my-4 btn-block" type="submit" disabled={!stripe || paymentSucces}>
+                        {paymentSucces ? 'Paid' : 'Pay'} {loading && <AiOutlineLoading className="text-white animate-spin mx-auto text-lg font-extrabold" />}
+                    </button>
+                    : <button className="btn btn-sm btn-primary btn-block my-4" disabled>
+                        No items
+                    </button>}
 
-            <p className="text-red-700 font-semibold">{error}</p>
-            {transactionId && <p className="text-green-700">Your transaction id is : {transactionId}</p>}
-        </form>
+                <p className="text-red-700 font-semibold">{error}</p>
+                {transactionId && <p className="text-green-700">Your transaction id is : {transactionId}</p>}
+            </form>
+        </div>
     )
 }
 
