@@ -27,7 +27,7 @@ const Navbar = () => {
                         <div className="flex-1 px-2 mx-2 font-semibold lg:hidden">Contest-Hub</div>
                         <div className="avatar hidden flex-1 lg:flex">
                             <div className="w-16 mask mask-squircle invert">
-                                <img src={logo} />
+                                <img className=" border-2 border-red-500 hover:border-green-600 cursor-pointer  rounded-full" src={logo} />
                             </div>
                         </div>
 
