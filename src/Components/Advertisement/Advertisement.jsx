@@ -25,7 +25,7 @@ const Advertisement = () => {
                     winners?.map(winner => <div key={winner?._id} className="py-5 ml-10 cursor-pointer"><WinnerCard mrWinner={winner} /></div>)
                 }
             </Marquee>
-            <Link to={'/allContest'} className="btn btn-block btn-success"><button>Participate Now</button></Link>
+            <Link to={'/allContest'} className="btn btn-block btn-success text-white"><button>Participate Now</button></Link>
         </div>
     )
 }
