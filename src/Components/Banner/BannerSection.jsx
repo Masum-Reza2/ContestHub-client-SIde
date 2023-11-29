@@ -1,4 +1,3 @@
-import { FaSearch } from "react-icons/fa"
 import Banner from "./Banner"
 import Typer from "./Typer"
 import usePublicAxios from "../../Hooks/usePublicAxios"
@@ -37,6 +36,15 @@ const BannerSection = () => {
             </div>
 
             <div className="p-5">
+                {
+                    <div className="text-center mb-2 italic border bg-sky-50 rounded-md">
+                        {
+                            searchText ? <p>Showing {populerContests?.length} result{populerContests?.length > 1 && `'s`} for <strong>{searchText}</strong></p> : <p>Our top-{populerContests?.length} populer contests</p>
+                        }
+                    </div>
+
+                }
+
                 <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {
                         populerContests?.map((item, index) => <TabCard key={index} item={item} />)
