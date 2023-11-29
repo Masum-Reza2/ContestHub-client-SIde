@@ -1,25 +1,26 @@
 import Banner from "./Banner"
 import Typer from "./Typer"
 import usePublicAxios from "../../Hooks/usePublicAxios"
-import Spinner from "../Spinner"
 import TabCard from "../TabCard"
 import { useEffect, useState } from "react"
 
 const BannerSection = () => {
+    const [loading, setLoading] = useState(false)
     const publicAxios = usePublicAxios();
     const [searchText, setSearchText] = useState('');
     const [populerContests, setPopulerContests] = useState([]);
     console.log(searchText)
 
     useEffect(() => {
+        setLoading(true)
         publicAxios.get(`/populerContest?searchText=${searchText}`)
             .then(res => {
-                setPopulerContests(res?.data)
+                setPopulerContests(res?.data);
+                setLoading(false);
             })
     }, [searchText, publicAxios])
 
 
-    if (populerContests?.length <= 0) return <Spinner />
     return (
 
         <>
@@ -45,11 +46,17 @@ const BannerSection = () => {
 
                 }
 
-                <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {
-                        populerContests?.map((item, index) => <TabCard key={index} item={item} />)
-                    }
-                </div>
+                {
+                    loading ?
+                        <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>
+                        :
+                        <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                            {
+                                populerContests?.map((item, index) => <TabCard key={index} item={item} />)
+                            }
+                        </div>
+                }
+
             </div>
 
         </>
