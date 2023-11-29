@@ -34,7 +34,7 @@ const TopCreators = () => {
                     populerCreators?.map(creator => <SwiperSlide key={creator?._id}>
                         <div className='relative  h-full w-full'>
                             <img className='h-full w-full object-cover' src={creator?.creatorImage} alt="" />
-                            <p className='absolute bottom-0 text-center w-full'>{creator?.creatorName}</p>
+                            <p className='absolute bottom-0 text-center w-full font-bold text-yellow-400'>{creator?.creatorName}</p>
                         </div>
                     </SwiperSlide>)
                 }

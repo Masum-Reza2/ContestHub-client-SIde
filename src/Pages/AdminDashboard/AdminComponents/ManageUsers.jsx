@@ -5,7 +5,6 @@ import AllUsersRow from "./AllUsersRow";
 const ManageUsers = () => {
     const { allUsers, isPending } = useAllUsers();
 
-
     if (isPending) return <Spinner />
     return (
         <div>

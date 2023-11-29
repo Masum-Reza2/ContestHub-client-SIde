@@ -26,6 +26,7 @@ import ContestDetails from "../Components/ContestDetails"
 import Payment from "../Payments/Payment"
 import TotalParticipant from "../Pages/CreatorDashboard/creatorComponents/TotalParticipant"
 import ErrorPage from "../Pages/ErrorPage/ErrorPage"
+import Leaderboard from "../Pages/LeaderBoard/Leaderboard"
 
 
 const Routes = createBrowserRouter([
@@ -36,6 +37,7 @@ const Routes = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: '/allContest', element: <AllContest /> },
+            { path: '/leaderboard', element: <Leaderboard /> },
             { path: '/details/:id', element: <PrivateRoute><ContestDetails /></PrivateRoute> },
             { path: '/payment/:id', element: <Payment /> }
         ]
