@@ -36,11 +36,11 @@ const BannerSection = () => {
                 </div>
             </div>
 
-            <div className="p-5">
+            <div className="p-2">
                 {
                     <div className="text-center mb-2 italic border bg-sky-50 rounded-md">
                         {
-                            searchText ? <p>Showing {populerContests?.length} result{populerContests?.length > 1 && `'s`} for <strong>{searchText}</strong></p> : <p>Our top-{populerContests?.length} populer contests</p>
+                            searchText ? <p>Showing {populerContests?.length} result{populerContests?.length > 1 && `'s`} for <strong>{searchText}</strong></p> : <p>Our populer-{populerContests?.length} contests</p>
                         }
                     </div>
 

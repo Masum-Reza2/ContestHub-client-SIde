@@ -114,6 +114,7 @@ const CheckoutForm = ({ payContest }) => {
                             date: new Date(),
                             contestId: payContest?._id,
                             isWin: false,
+                            prizeMoney: payContest?.prizeMoney,
                         }
 
                         // saving to data base
