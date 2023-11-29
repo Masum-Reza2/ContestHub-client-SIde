@@ -74,8 +74,15 @@ const ContestDetails = () => {
                     </div>
                     :
                     <div className="flex flex-col items-center justify-center px-2 gap-3">
-                        <h1 className="font-bold text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">The Winner!</h1>
-                        <WinnerCard mrWinner={mrWinner[0]} />
+                        {mrWinner?.length ?
+                            <>
+                                <h1 className="font-bold text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">The Winner!</h1>
+                                <WinnerCard mrWinner={mrWinner[0]} />
+                            </>
+                            :
+                            <p className="text-red-600 font-bold text-2xl text-center">Oops there was no participant! No winner for this contest.</p>
+                        }
+
                     </div>
             }
 

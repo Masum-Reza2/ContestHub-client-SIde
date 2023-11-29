@@ -4,8 +4,6 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
 import './topCreators.css'
-
-import img from '../../assets/Banner/trophy-3472245_1920.jpg'
 import { useQuery } from '@tanstack/react-query';
 import usePublicAxios from '../../Hooks/usePublicAxios';
 
@@ -18,7 +16,6 @@ const TopCreators = () => {
             return res?.data;
         }
     })
-    console.log(populerCreators)
 
 
     if (isPending) return <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>
