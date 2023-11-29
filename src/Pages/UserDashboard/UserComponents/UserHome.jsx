@@ -13,7 +13,7 @@ const UserHome = () => {
                 <GiPartyPopper className="text-9xl lg:text-[12rem] " />
             </div>
             <div className="text-center ">
-                <h1 className="text-3xl md:text-4xl font-bold">Welcome Back Mr {user?.displayName}!</h1>
+                <h1 className="text-3xl md:text-4xl font-bold">Welcome Back {user?.displayName}!</h1>
                 <p className="text-2xl md:text-3xl font-bold">Have a look at your winnings!</p>
             </div>
             <Link className="mt-5" to={'/dashboard/user/winnings'}>

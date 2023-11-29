@@ -27,13 +27,11 @@ const ControlRoom = ({ children }) => {
 
     // 3 logOut user
     const logOutUser = () => {
-        setLoading(true);
         return signOut(auth)
     }
 
     // 4 updateUserProfile
     const updateUserProfile = (name, imageUrl) => {
-        // setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: imageUrl
@@ -79,7 +77,6 @@ const ControlRoom = ({ children }) => {
             } else {
                 localStorage.removeItem('token');
             }
-
             setLoading(false);
         });
         return () => {

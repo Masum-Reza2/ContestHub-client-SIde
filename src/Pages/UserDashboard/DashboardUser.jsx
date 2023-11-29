@@ -4,6 +4,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaHandshake } from "react-icons/fa"
 import { GiAutoRepair, GiPodiumWinner } from "react-icons/gi"
 import { NavLink, Outlet } from "react-router-dom"
+import Footer from "../../Components/Footer/Footer";
 
 const DashboardUser = () => {
     const navLinks = <>
@@ -20,9 +21,14 @@ const DashboardUser = () => {
                 <label htmlFor="my-drawer-2" className="lg:hidden fixed mt-3 ml-3 transition-all duration-100 bg-sky-300 p-2 rounded-md">
                     <AiOutlineMenu className="text-2xl" />
                 </label>
-                <div className="drawer-content pt-14 lg:pt-2 lg:py-5 overflow-x-auto">
+                <div className="drawer-content pt-14 lg:pt-2 overflow-x-auto">
                     {/* Page content here */}
-                    <Outlet />
+                    <div className="min-h-screen pb-5">
+                        <Outlet />
+                    </div>
+                    <div className="border-l-2 border-indigo-900">
+                        <Footer />
+                    </div>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>

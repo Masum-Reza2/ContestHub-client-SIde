@@ -25,12 +25,14 @@ import UserHome from "../Pages/UserDashboard/UserComponents/UserHome"
 import ContestDetails from "../Components/ContestDetails"
 import Payment from "../Payments/Payment"
 import TotalParticipant from "../Pages/CreatorDashboard/creatorComponents/TotalParticipant"
+import ErrorPage from "../Pages/ErrorPage/ErrorPage"
 
 
 const Routes = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+        errorElement: <ErrorPage />,
         children: [
             { index: true, element: <Home /> },
             { path: '/allContest', element: <AllContest /> },

@@ -19,8 +19,8 @@ const GlobalProfile = () => {
 
 
                 <div className="p-6 text-center">
-                    <h4 className="mb-2 font-sans text-2xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900 flex items-center justify-center capitalize">
-                        {user?.displayName} <Link to={`/dashboard/user/settings/user`} className="hover:text-green-600"><FaEdit className="translate-x-5" /></Link>
+                    <h4 className="mb-2 font-sans text-2xl antialiased font-bold leading-snug tracking-normal text-blue-gray-900 flex items-center justify-center gap-3 capitalize">
+                        {user?.displayName} <Link to={`/dashboard/user/settings/user`} className="hover:text-green-600"><FaEdit /></Link>
                     </h4>
                     <p className="block font-bold font-sans text-base antialiased leading-relaxed text-transparent bg-gradient-to-tr from-indigo-600 to-gray-400 bg-clip-text capitalize">
                         {role?.role} / ContestHub
