@@ -3,6 +3,7 @@ import useGlobal from "../../../Hooks/useGlobal"
 import useSecureAxios from "../../../Hooks/useSecureAxios";
 import Spinner from "../../../Components/Spinner";
 import ParticipationsRow from "./ParticipationsRow";
+import { Helmet } from "react-helmet-async";
 
 const UserParticipations = () => {
     const { user } = useGlobal();
@@ -18,6 +19,10 @@ const UserParticipations = () => {
     if (isPending) return <Spinner />
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | User participations</title>
+            </Helmet>
+
             <h1 className="text-center font-semibold text-lg md:text-xl">You have participated in {participations?.length} contests.</h1>
             <div className="overflow-x-auto">
                 <table className="table">

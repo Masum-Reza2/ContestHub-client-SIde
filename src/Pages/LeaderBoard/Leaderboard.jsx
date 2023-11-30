@@ -3,6 +3,7 @@ import Cover from "../../Components/Cover"
 import usePublicAxios from "../../Hooks/usePublicAxios"
 import leaderBoardImg from '../../assets/Banner/leaderboard.jpg'
 import LeaderRow from "./LeaderRow";
+import { Helmet } from "react-helmet-async";
 
 const Leaderboard = () => {
 
@@ -18,6 +19,11 @@ const Leaderboard = () => {
     if (isPending) return <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>
     return (
         <div>
+
+            <Helmet>
+                <title>Contest Hub | Leaderboard</title>
+            </Helmet>
+
             <Cover title={'Leaderboard'} img={leaderBoardImg} desc={'Become the next leader!'} />
             <div className="overflow-x-auto pb-10">
                 <table className="table">

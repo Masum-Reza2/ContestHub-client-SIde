@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import useSecureAxios from "../../../Hooks/useSecureAxios"
 import AdminChart from "./Chart/AdminChart";
+import { Helmet } from "react-helmet-async";
 
 const AdminStatistics = () => {
     const secureAxios = useSecureAxios();
@@ -24,6 +25,11 @@ const AdminStatistics = () => {
     if (isPending) return <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>
     return (
         <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
+
+            <Helmet>
+                <title>Contest Hub | Statistics</title>
+            </Helmet>
+
             <AdminChart data={data} />
             <h1 className="font-bold mb-2 border w-full text-center shadow-md shadow-indigo-900">Participant for different types.</h1>
         </div>

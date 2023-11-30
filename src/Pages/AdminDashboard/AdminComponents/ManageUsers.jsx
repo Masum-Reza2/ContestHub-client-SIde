@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Spinner from "../../../Components/Spinner";
 import useAllUsers from "../../../Hooks/useAllUsers"
 import AllUsersRow from "./AllUsersRow";
@@ -10,6 +11,10 @@ const ManageUsers = () => {
     if (isPending) return <Spinner />
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | Manage users</title>
+            </Helmet>
+
             <h1 className="text-center font-bold text-lg md:text-2xl">Total users - {allUsers?.length}</h1>
 
             <div>

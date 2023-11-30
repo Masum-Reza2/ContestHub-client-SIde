@@ -9,7 +9,7 @@ const BannerSection = () => {
     const publicAxios = usePublicAxios();
     const [searchText, setSearchText] = useState('');
     const [populerContests, setPopulerContests] = useState([]);
-    console.log(searchText)
+
 
     useEffect(() => {
         setLoading(true)

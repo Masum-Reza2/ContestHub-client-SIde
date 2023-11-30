@@ -5,6 +5,7 @@ import AdditionalLogin from "../../Shared/AdditionalLogin/AdditionalLogin";
 import { useForm } from "react-hook-form"
 import useGlobal from "../../Hooks/useGlobal";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 /* eslint-disable react/no-unescaped-entities */
@@ -43,6 +44,10 @@ const Login = () => {
 
     return (
         <div className="py-10">
+            <Helmet>
+                <title>Contest Hub | Login</title>
+            </Helmet>
+
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className="relative flex w-[90%] md:w-[60%] lg:w-[40%] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-auto py-5 shadow-sky-900">
 

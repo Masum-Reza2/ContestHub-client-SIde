@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useGlobal from "../../Hooks/useGlobal";
 import useSecureAxios from "../../Hooks/useSecureAxios";
 import AdminChart from "../AdminDashboard/AdminComponents/Chart/AdminChart";
+import { Helmet } from "react-helmet-async";
 
 const CreatorStatistics = () => {
 
@@ -16,7 +17,6 @@ const CreatorStatistics = () => {
             }
         }
     })
-    console.log(data)
 
     const chartData = data.map(item => {
         let chartData = {
@@ -29,6 +29,11 @@ const CreatorStatistics = () => {
     if (isPending) return <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>
     return (
         <div className="flex flex-col items-center justify-center min-h-screen overflow-x-auto">
+
+            <Helmet>
+                <title>Contest Hub | Statistics</title>
+            </Helmet>
+
             <AdminChart data={chartData} />
             <h1 className="font-bold mb-2 border w-full text-center shadow-md shadow-indigo-900">Participants on your contest.</h1>
         </div>

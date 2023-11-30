@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useSecureAxios from "./useSecureAxios";
+import toast from "react-hot-toast";
 
 const useAllContests = () => {
     const secureAxios = useSecureAxios();
@@ -10,7 +11,7 @@ const useAllContests = () => {
                 const res = await secureAxios.get(`/contests`);
                 return (res.data)
             } catch (error) {
-                console.log(error)
+                toast.error(error?.message)
             }
         }
     })

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 const WinnerCard = ({ mrWinner }) => {
-    console.log(mrWinner)
     const { img, email, name, prizeMoney } = mrWinner
     return (
         <div className="relative flex flex-col text-gray-700 max-w-md bg-white shadow-md rounded-xl bg-clip-border shadow-indigo-900">

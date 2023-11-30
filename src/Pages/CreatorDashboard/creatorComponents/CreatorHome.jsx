@@ -2,11 +2,17 @@
 import { Link } from "react-router-dom";
 import useGlobal from "../../../Hooks/useGlobal";
 import feather from '../../../assets/Images/creatoeFeather-removebg-preview.png';
+import { Helmet } from "react-helmet-async";
 
 const CreatorHome = () => {
     const { user } = useGlobal();
     return (
         <div className="min-h-[90vh] flex flex-col items-center">
+            <Helmet>
+                <title>Contest Hub | Creator Home</title>
+            </Helmet>
+
+
             <div className="lg:mt-10">
                 <img className="w-1/3 rotate-45 mx-auto" src={feather} alt="" />
             </div>

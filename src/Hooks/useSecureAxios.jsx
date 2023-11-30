@@ -16,10 +16,8 @@ const useSecureAxios = () => {
             instance.interceptors.response.use(function (response) {
                 return response;
             }, function (error) {
-                console.log('error in the interceptor is ', error)
                 const status = error.response.status;
                 if (status === 401 || status === 403) {
-                    console.log('kick out the user and navigate to login page')
                     logOutUser()
                     navigate('/login')
                 }

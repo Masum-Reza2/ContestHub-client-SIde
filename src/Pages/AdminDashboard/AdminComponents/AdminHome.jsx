@@ -1,10 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import salute from '../../../assets/Images/boss-removebg-preview.png'
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
     return (
         <div className="min-h-[90vh] flex flex-col items-center justify-center">
+
+            <Helmet>
+                <title>Contest Hub | Admin home</title>
+            </Helmet>
+
             <div>
                 <img className="w-1/3 mx-auto" src={salute} alt="saluting to boss" />
             </div>

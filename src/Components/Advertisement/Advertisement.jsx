@@ -13,7 +13,7 @@ const Advertisement = () => {
             return res?.data;
         }
     })
-    // console.log(winners)
+
 
 
     if (isPending) return <div className="text-center"><span className="loading loading-spinner loading-lg"></span></div>

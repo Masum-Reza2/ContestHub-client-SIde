@@ -5,6 +5,7 @@ import { FaHandshake } from "react-icons/fa"
 import { GiAutoRepair, GiPodiumWinner } from "react-icons/gi"
 import { NavLink, Outlet } from "react-router-dom"
 import Footer from "../../Components/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
 const DashboardUser = () => {
     const navLinks = <>
@@ -16,6 +17,11 @@ const DashboardUser = () => {
     </>
     return (
         <div>
+
+            <Helmet>
+                <title>Contest Hub | User Dashboard</title>
+            </Helmet>
+
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <label htmlFor="my-drawer-2" className="lg:hidden fixed mt-3 ml-3 transition-all duration-100 bg-sky-300 p-2 rounded-md">

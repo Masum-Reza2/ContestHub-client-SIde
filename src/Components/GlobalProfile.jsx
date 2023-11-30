@@ -4,6 +4,7 @@ import useRole from "../Hooks/useRole";
 import { Link } from "react-router-dom";
 import UserLossWinRatio from "./UserLossWinRatio";
 import Spinner from "./Spinner";
+import { Helmet } from "react-helmet-async";
 
 const GlobalProfile = () => {
     const { user } = useGlobal();
@@ -12,6 +13,11 @@ const GlobalProfile = () => {
     if (isLoading) return <Spinner />
     return (
         <div className="px-2">
+
+            <Helmet>
+                <title>Contest Hub | Profile</title>
+            </Helmet>
+
             <div className="relative flex flex-col text-gray-700  shadow-md shadow-indigo-900 rounded-xl bg-clip-border">
                 <div>
                     <img className="mx-auto w-52 h-52 md:w-96 md:h-96 max-w-md object-cover rounded-full" src={user?.photoURL} alt="profile-picture" />

@@ -23,7 +23,6 @@ const ParticipantsRow = ({ participant, index, refetch }) => {
             if (result.isConfirmed) {
                 try {
                     const res = await secureAxios.put(`/setWinnerByCreator/${id}`, { id: _id })
-                    console.log(res?.data?.message)
                     if (res?.data?.modifiedCount) {
                         refetch()
                         Swal.fire({

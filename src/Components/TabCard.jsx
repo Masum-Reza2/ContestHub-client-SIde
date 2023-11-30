@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const TabCard = ({ item }) => {
     const { contestName, photoUrl, participateCount, description, _id } = item;
     return (
-        <div className="card bg-base-100 shadow-md shadow-indigo-900">
+        <div className="card bg-base-100 shadow-md shadow-indigo-900" data-aos="zoom-in-down">
             <figure><img className="h-60 w-full object-cover" src={photoUrl} alt="Shoes" /></figure>
 
             <div className="card-body flex flex-col items-start">

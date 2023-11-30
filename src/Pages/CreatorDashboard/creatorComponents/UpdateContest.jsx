@@ -8,6 +8,7 @@ import useOldContest from "../../../Hooks/useOldContest";
 import uploadImage from "../../../Utils/uploadImage";
 import Swal from "sweetalert2";
 import useSecureAxios from "../../../Hooks/useSecureAxios";
+import { Helmet } from "react-helmet-async";
 
 
 const UpdateContest = () => {
@@ -86,6 +87,10 @@ const UpdateContest = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | Update contest</title>
+            </Helmet>
+
             <h1 className="text-center font-medium text-lg md:text-2xl">Update {oldContestName}</h1>
 
             <form onSubmit={handleSubmit(onSubmit)}>

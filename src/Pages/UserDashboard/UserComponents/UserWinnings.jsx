@@ -8,6 +8,7 @@ import Cover from "../../../Components/Cover";
 import trofee from '../../../assets/contestImages/cup-1010909_1920.jpg'
 import WinnerRow from "./WinnerRow";
 import sad from '../../../assets/contestImages/sad.png'
+import { Helmet } from "react-helmet-async";
 
 
 const UserWinnings = () => {
@@ -20,12 +21,16 @@ const UserWinnings = () => {
             return res?.data;
         }
     })
-    console.log(userWinnings)
+
 
     if (isPending) return <Spinner />
     return (
 
         <>
+            <Helmet>
+                <title>Contest Hub | User winnings</title>
+            </Helmet>
+
             {
                 userWinnings?.length > 0 ?
                     <div>

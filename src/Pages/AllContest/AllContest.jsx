@@ -8,6 +8,7 @@ import 'react-tabs/style/react-tabs.css';
 import contestImg from '../../assets/contestImages/contest (2).jpg'
 import { useState } from "react";
 import AllContestTabItems from "../../Components/AllContestTabItems";
+import { Helmet } from "react-helmet-async";
 
 const AllContest = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -23,7 +24,11 @@ const AllContest = () => {
 
     if (isLoading) return <Spinner />
     return (
-        <div className="">
+        <div>
+            <Helmet>
+                <title>Contest Hub | All contest</title>
+            </Helmet>
+
             <Cover img={contestImg} desc={'Welcome to our exciting Contest Hub, where the thrill of competition meets the chance to win fantastic prizes! Dive into a world of challenges and showcase your skills for a shot at victory.'} title={'mega contest'} />
 
             <div className="pt-5 text-center">

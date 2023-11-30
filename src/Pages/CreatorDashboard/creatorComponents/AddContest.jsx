@@ -7,6 +7,7 @@ import useGlobal from "../../../Hooks/useGlobal";
 import useSecureAxios from "../../../Hooks/useSecureAxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AddContest = () => {
     const [loading, setLoading] = useState(false);
@@ -62,6 +63,10 @@ const AddContest = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | Add contest</title>
+            </Helmet>
+
             <h1 className="text-center font-medium text-lg md:text-2xl">Add a contest</h1>
 
             <form onSubmit={handleSubmit(onSubmit)}>

@@ -6,6 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { GiAutoRepair } from "react-icons/gi";
 import Footer from "../../Components/Footer/Footer";
 import { IoStatsChart } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 
 const CreatorDashboard = () => {
@@ -19,6 +20,11 @@ const CreatorDashboard = () => {
     </>
     return (
         <div>
+
+            <Helmet>
+                <title>Contest Hub | Creator Dashboard</title>
+            </Helmet>
+
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <label htmlFor="my-drawer-2" className="lg:hidden fixed mt-3 ml-3 transition-all duration-100 bg-sky-300 p-2 rounded-md">

@@ -1,14 +1,18 @@
+import { Helmet } from "react-helmet-async";
 import Spinner from "../../../Components/Spinner";
 import useAllContests from "../../../Hooks/useAllContests"
 import ContestRow from "./ContestRow";
 
 const ManageContests = () => {
     const { contests, isLoading } = useAllContests();
-    console.log(contests)
 
     if (isLoading) return <Spinner />
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | Manage contest</title>
+            </Helmet>
+
             <h1 className="text-center font-bold text-lg md:text-2xl">Total contests - {contests?.length}</h1>
             <div className="overflow-x-auto py-2">
                 <table className="table">

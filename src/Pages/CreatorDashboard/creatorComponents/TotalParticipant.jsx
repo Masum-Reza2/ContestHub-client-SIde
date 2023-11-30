@@ -3,6 +3,7 @@ import useSecureAxios from "../../../Hooks/useSecureAxios"
 import Spinner from "../../../Components/Spinner";
 import ParticipantsRow from "./ParticipantsRow";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const TotalParticipant = () => {
     const secureAxios = useSecureAxios();
@@ -14,13 +15,17 @@ const TotalParticipant = () => {
             return res?.data;
         }
     })
-    console.log(participants)
+
 
 
 
     if (isPending) return <Spinner />
     return (
         <div>
+            <Helmet>
+                <title>Contest Hub | Total participant</title>
+            </Helmet>
+
             <h1 className="text-center font-semibold text-lg md:text-xl">You have Total {participants?.length} participants on this contest.</h1>
             <div className="overflow-x-auto">
                 <table className="table">

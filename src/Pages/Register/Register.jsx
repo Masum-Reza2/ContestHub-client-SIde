@@ -7,6 +7,7 @@ import uploadImage from "../../Utils/uploadImage";
 import useGlobal from "../../Hooks/useGlobal";
 import usePublicAxios from "../../Hooks/usePublicAxios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 /* eslint-disable react/no-unescaped-entities */
 const Register = () => {
@@ -61,6 +62,10 @@ const Register = () => {
 
     return (
         <div className="py-10">
+            <Helmet>
+                <title>Contest Hub | Registration</title>
+            </Helmet>
+
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className="relative flex w-[90%] md:w-[60%] lg:w-[40%] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mx-auto py-5 shadow-sky-900">
 

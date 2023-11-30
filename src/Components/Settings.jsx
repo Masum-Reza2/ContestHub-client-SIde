@@ -6,6 +6,8 @@ import { AiOutlineLoading } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useSecureAxios from "../Hooks/useSecureAxios";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Settings = () => {
@@ -37,7 +39,7 @@ const Settings = () => {
             navigate('/dashboard/user/profile/user')
             setLoading(false)
         } catch (error) {
-            console.log(error);
+            toast.error(error?.message)
             setLoading(false)
         }
     }
@@ -79,6 +81,11 @@ const Settings = () => {
 
     return (
         <div>
+
+            <Helmet>
+                <title>Contest Hub | Settings</title>
+            </Helmet>
+
             <h1 className="text-center font-bold text-lg md:text-xl mt-2">Settings</h1>
             <div className="min-h-[80vh] flex flex-col items-center justify-center px-5 space-y-3">
                 <h1 className="text-center font-bold text-lg md:text-xl mt-2">Update profile</h1>

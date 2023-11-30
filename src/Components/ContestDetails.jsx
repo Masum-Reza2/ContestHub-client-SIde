@@ -5,6 +5,7 @@ import useSecureAxios from "../Hooks/useSecureAxios";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import WinnerCard from "./WinnerCard";
+import { Helmet } from "react-helmet-async";
 
 
 const ContestDetails = () => {
@@ -36,7 +37,6 @@ const ContestDetails = () => {
 
     if (timeDifference <= 0) {
         secureAxios.get(`/setWinner/${_id}`)
-            .then(res => console.log(res?.data));
     }
 
     const handleTimeDeff = () => {
@@ -48,6 +48,11 @@ const ContestDetails = () => {
     if (isPending) return <Spinner />
     return (
         <div>
+
+            <Helmet>
+                <title>Contest Hub | Contest Details</title>
+            </Helmet>
+
             <div className="w-full h-[90vh]">
                 <img className="h-full w-full object-cover" src={photoUrl} alt="" />
             </div>
@@ -80,7 +85,8 @@ const ContestDetails = () => {
                                 <WinnerCard mrWinner={mrWinner[0]} />
                             </>
                             :
-                            <p className="text-red-600 font-bold text-2xl text-center">Oops there was no participant! No winner for this contest.</p>
+                            <p className="text-red-600 font-bold text-2xl text-center">Oops there was no participant! No winner for this contest.import {Helmet, HelmetProvider} from 'react-helmet-async';
+                            </p>
                         }
 
                     </div>
