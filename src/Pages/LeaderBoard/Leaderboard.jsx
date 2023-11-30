@@ -35,7 +35,7 @@ const Leaderboard = () => {
                             <th>Image</th>
                             <th>Name</th>
                             <th>Total prize</th>
-                            <th>Total wins</th>
+                            <th className="text-lg">🏆</th>
                         </tr>
                     </thead>
                     <tbody>
