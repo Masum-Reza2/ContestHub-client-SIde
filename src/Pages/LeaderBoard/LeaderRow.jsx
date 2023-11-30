@@ -24,13 +24,6 @@ const LeaderRow = ({ leader, index }) => {
             <td>
                 {totalWins}
             </td>
-
-
-            {/* <th>
-                <Link to={`/dashboard/creator/participants/${_id}`}>
-                    <button className="btn btn-ghost btn-xs md:btn-sm">details</button>
-                </Link>
-            </th> */}
         </tr>
     )
 }

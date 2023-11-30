@@ -27,6 +27,7 @@ import Payment from "../Payments/Payment"
 import TotalParticipant from "../Pages/CreatorDashboard/creatorComponents/TotalParticipant"
 import ErrorPage from "../Pages/ErrorPage/ErrorPage"
 import Leaderboard from "../Pages/LeaderBoard/Leaderboard"
+import AdminStatistics from "../Pages/AdminDashboard/AdminComponents/AdminStatistics"
 
 
 const Routes = createBrowserRouter([
@@ -79,6 +80,7 @@ const Routes = createBrowserRouter([
             { index: true, element: <AdminHome /> },
             { path: 'manageUsers', element: <ManageUsers /> },
             { path: 'manageContest', element: <ManageContests /> },
+            { path: 'adminStatistics', element: <AdminStatistics /> },
             { path: 'profile/:user', element: <GlobalProfile /> },
             { path: 'settings/:user', element: <Settings /> },
         ]

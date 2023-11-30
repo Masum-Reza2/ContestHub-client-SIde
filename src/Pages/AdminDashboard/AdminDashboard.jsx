@@ -5,6 +5,7 @@ import { FaUserMd } from "react-icons/fa";
 import { GiAutoRepair } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import Footer from "../../Components/Footer/Footer";
+import { IoStatsChart } from "react-icons/io5";
 
 
 
@@ -13,6 +14,7 @@ const AdminDashboard = () => {
     const navLinks = <>
         <li><NavLink to={'/dashboard/admin/manageUsers'}><FaUserMd className="text-xl" />Manage users</NavLink></li>
         <li><NavLink to={'/dashboard/admin/manageContest'}><GiAutoRepair className="text-xl" />Manage contest's</NavLink></li>
+        <li><NavLink to={'/dashboard/admin/adminStatistics'}><IoStatsChart className="text-xl" />statistics</NavLink></li>
 
         <div className="divider"></div>
         <li><NavLink to={'/'}><AiFillHome className="text-lg" />Home</NavLink></li>
