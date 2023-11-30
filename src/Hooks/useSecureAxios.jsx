@@ -3,7 +3,7 @@ import useGlobal from "./useGlobal";
 import { useNavigate } from "react-router-dom";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://contest-hub-server-mu.vercel.app',
     headers: { token: localStorage.getItem('token') }
 });
 
