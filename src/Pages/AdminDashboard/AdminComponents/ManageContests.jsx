@@ -4,6 +4,7 @@ import useAllContests from "../../../Hooks/useAllContests"
 import ContestRow from "./ContestRow";
 
 const ManageContests = () => {
+
     const { contests, isLoading } = useAllContests();
 
     if (isLoading) return <Spinner />

@@ -46,6 +46,7 @@ const AllContest = () => {
                     }
                 </Tabs>
             </div>
+
         </div>
     )
 }

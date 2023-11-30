@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 const MyCreations = () => {
     const { user } = useGlobal();
     const secureAxios = useSecureAxios();
+
     const { data = [], refetch, isPending } = useQuery({
         queryKey: ['specificContests', user?.email],
         queryFn: async () => {
@@ -48,6 +49,7 @@ const MyCreations = () => {
 
                 </table>
             </div>
+
         </div>
     )
 }

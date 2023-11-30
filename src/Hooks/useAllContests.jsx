@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useAllContests = () => {
     const secureAxios = useSecureAxios();
     const { data: contests = [], refetch, isPending: isLoading } = useQuery({
-        queryKey: ['allcontests'],
+        queryKey: ['allContests'],
         queryFn: async () => {
             try {
                 const res = await secureAxios.get(`/contests`);
