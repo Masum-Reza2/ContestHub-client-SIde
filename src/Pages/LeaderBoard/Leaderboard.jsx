@@ -24,7 +24,7 @@ const Leaderboard = () => {
                 <title>Contest Hub | Leaderboard</title>
             </Helmet>
 
-            <Cover title={'Leaderboard'} img={leaderBoardImg} desc={'Become the next leader!'} />
+            <Cover title={'Leaderboard'} img={leaderBoardImg} desc={'Be the next leader!'} />
             <div className="overflow-x-auto pb-10">
                 <table className="table">
                     {/* head */}

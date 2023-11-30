@@ -16,7 +16,7 @@ const Home = () => {
                 <Advertisement />
             </div>
 
-            <div data-aos="zoom-out-right">
+            <div data-aos="fade-right">
                 <TopCreators />
 
             </div>
