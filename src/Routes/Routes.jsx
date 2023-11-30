@@ -29,6 +29,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage"
 import Leaderboard from "../Pages/LeaderBoard/Leaderboard"
 import AdminStatistics from "../Pages/AdminDashboard/AdminComponents/AdminStatistics"
 import CreatorStatistics from "../Pages/CreatorDashboard/CreatorStatistics"
+import UserStatistics from "../Pages/UserDashboard/UserStatistics/UserStatistics"
 
 
 const Routes = createBrowserRouter([
@@ -53,6 +54,7 @@ const Routes = createBrowserRouter([
             { index: true, element: <UserHome /> },
             { path: 'participations', element: <UserParticipations /> },
             { path: 'winnings', element: <UserWinnings /> },
+            { path: 'userStatistics', element: <UserStatistics /> },
             { path: 'profile/:user', element: <GlobalProfile /> },
             { path: 'settings/:user', element: <Settings /> },
         ]
