@@ -144,7 +144,8 @@ const CheckoutForm = ({ payContest }) => {
 
 
     return (
-        <div className="flex items-center justify-center min-h-[80vh]">
+        <div className="flex flex-col items-center justify-center min-h-[80vh]">
+            <h1 className="font-bold text-xl">Please pay ${price}</h1>
             <form onSubmit={handleSubmit} className="w-[90%] md:w-[70%] mx-auto">
                 <CardElement
                     options={{

@@ -5,12 +5,14 @@ import { FaListCheck } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { GiAutoRepair } from "react-icons/gi";
 import Footer from "../../Components/Footer/Footer";
+import { IoStatsChart } from "react-icons/io5";
 
 
 const CreatorDashboard = () => {
     const navLinks = <>
         <li><NavLink to={'/dashboard/creator/addContest'}><IoIosAddCircle className="text-xl" />Add Contest</NavLink></li>
         <li><NavLink to={'/dashboard/creator/myCreations'}><FaListCheck className="" />My creations</NavLink></li>
+        <li><NavLink to={'/dashboard/creator/creatorStatistics'}><IoStatsChart className="text-xl" />statistics</NavLink></li>
 
         <div className="divider"></div>
         <li><NavLink to={'/'}><AiFillHome className="text-lg" />Home</NavLink></li>

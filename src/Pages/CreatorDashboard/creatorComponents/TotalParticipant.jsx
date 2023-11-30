@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query"
 import useSecureAxios from "../../../Hooks/useSecureAxios"
-import useGlobal from "../../../Hooks/useGlobal";
 import Spinner from "../../../Components/Spinner";
 import ParticipantsRow from "./ParticipantsRow";
 import { useParams } from "react-router-dom";
 
 const TotalParticipant = () => {
     const secureAxios = useSecureAxios();
-    const { user } = useGlobal();
     const { id } = useParams();
     const { data: participants = [], isPending, refetch } = useQuery({
         queryKey: ['totallParticipants'],

@@ -28,6 +28,7 @@ import TotalParticipant from "../Pages/CreatorDashboard/creatorComponents/TotalP
 import ErrorPage from "../Pages/ErrorPage/ErrorPage"
 import Leaderboard from "../Pages/LeaderBoard/Leaderboard"
 import AdminStatistics from "../Pages/AdminDashboard/AdminComponents/AdminStatistics"
+import CreatorStatistics from "../Pages/CreatorDashboard/CreatorStatistics"
 
 
 const Routes = createBrowserRouter([
@@ -65,6 +66,7 @@ const Routes = createBrowserRouter([
             { index: true, element: <CreatorHome /> },
             { path: 'addContest', element: <AddContest /> },
             { path: 'myCreations', element: <MyCreations /> },
+            { path: 'creatorStatistics', element: <CreatorStatistics /> },
             { path: 'updateContest/:id', element: <UpdateContest /> },
             { path: 'participants/:id', element: <TotalParticipant /> },
             { path: 'profile/:user', element: <GlobalProfile /> },
