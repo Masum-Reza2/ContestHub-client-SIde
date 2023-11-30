@@ -5,12 +5,14 @@ import { useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useSecureAxios from "../Hooks/useSecureAxios";
 
 
 const Settings = () => {
     const { user, updateUserProfile } = useGlobal();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const secureAxios = useSecureAxios();
 
     const {
         register,
@@ -40,6 +42,40 @@ const Settings = () => {
         }
     }
 
+    const handlePromotion = async () => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Sending promotion request!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "confirm!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await secureAxios.put(`/promotionRequest/${user?.email}`)
+                if (res?.data?.modifiedCount === 0) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "info",
+                        title: "Already requested!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                if (res?.data?.modifiedCount) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Success",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+        });
+    }
 
     return (
         <div>
@@ -66,8 +102,8 @@ const Settings = () => {
                         <button className="btn btn-sm">Submit {loading && <AiOutlineLoading className="text-black animate-spin mx-auto text-lg font-extrabold" />}</button>
                     </div>
                 </form>
+                <button onClick={handlePromotion} className="btn btn-block">Request for promotion</button>
             </div>
-
         </div>
     )
 }
