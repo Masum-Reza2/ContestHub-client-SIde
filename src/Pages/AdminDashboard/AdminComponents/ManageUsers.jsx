@@ -4,6 +4,8 @@ import AllUsersRow from "./AllUsersRow";
 
 const ManageUsers = () => {
     const { allUsers, isPending } = useAllUsers();
+    const isAnyRequest = allUsers.find(user => user?.promotionRequest);
+
 
     if (isPending) return <Spinner />
     return (
@@ -21,7 +23,7 @@ const ManageUsers = () => {
                                 <th>User email</th>
                                 <th>User Name</th>
                                 <th>Role</th>
-                                <th>Request</th>
+                                <th>Request{isAnyRequest && <span className="text-red-500 font-bold ml-1">!</span>}</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
