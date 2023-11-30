@@ -8,7 +8,9 @@ import useSecureAxios from "../Hooks/useSecureAxios";
 import { AiOutlineLoading } from "react-icons/ai";
 
 const CheckoutForm = ({ payContest }) => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [submittedTask, setSubmittedTask] = useState('');
+
     const { user } = useGlobal();
     const [error, setError] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -115,6 +117,7 @@ const CheckoutForm = ({ payContest }) => {
                             contestId: payContest?._id,
                             isWin: false,
                             prizeMoney: payContest?.prizeMoney,
+                            submittedTask
                         }
 
                         // saving to data base
@@ -144,9 +147,17 @@ const CheckoutForm = ({ payContest }) => {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[80vh]">
-            <h1 className="font-bold text-xl">Please pay ${price}</h1>
+        <div className="flex flex-col gap-5 items-center justify-center min-h-[80vh]">
+
+            <div className="w-full">
+                <h5 className="text-center font-bold">Submit your task here</h5>
+                <label className="form-control">
+                    <textarea value={submittedTask} onChange={(e) => setSubmittedTask(e.target.value)} className="textarea mx-auto textarea-bordered w-[90%] md:max-w-[70%] h-32 lg:h-40" placeholder="Start typing..."></textarea>
+                </label>
+            </div>
+
             <form onSubmit={handleSubmit} className="w-[90%] md:w-[70%] mx-auto">
+                <h1 className="font-bold text-xl mb-2">Please pay ${price}</h1>
                 <CardElement
                     options={{
                         style: {
@@ -164,7 +175,7 @@ const CheckoutForm = ({ payContest }) => {
                     }}
                 />
                 {price ?
-                    <button className="btn btn-sm btn-primary my-4 btn-block" type="submit" disabled={!stripe || paymentSucces}>
+                    <button className="btn btn-sm btn-primary my-4 btn-block" type="submit" disabled={!stripe || paymentSucces || !submittedTask}>
                         {paymentSucces ? 'Paid' : 'Pay'} {loading && <AiOutlineLoading className="text-white animate-spin mx-auto text-lg font-extrabold" />}
                     </button>
                     : <button className="btn btn-sm btn-primary btn-block my-4" disabled>

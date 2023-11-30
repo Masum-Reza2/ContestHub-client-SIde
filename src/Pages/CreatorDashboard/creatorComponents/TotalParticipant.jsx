@@ -32,7 +32,7 @@ const TotalParticipant = () => {
                             <th>Contest Name</th>
                             <th>Participant Name</th>
                             <th>Email</th>
-                            <th>Task submission</th>
+                            <th>Submitted Task</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>

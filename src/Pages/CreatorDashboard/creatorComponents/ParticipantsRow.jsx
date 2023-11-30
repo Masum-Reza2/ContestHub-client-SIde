@@ -5,9 +5,10 @@ import { useParams } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const ParticipantsRow = ({ participant, index, refetch }) => {
-    const { contestName, name, email, isWin, _id } = participant
+    const { contestName, name, email, isWin, _id, submittedTask } = participant
     const secureAxios = useSecureAxios();
     const { id } = useParams();
+
 
     const handleWinner = async () => {
         Swal.fire({
@@ -47,6 +48,14 @@ const ParticipantsRow = ({ participant, index, refetch }) => {
         });
     }
 
+    const handleTask = () => {
+        Swal.fire({
+            title: `Task of ${name}`,
+            text: submittedTask,
+            icon: "info"
+        });
+    }
+
     return (
         <tr className="overflow-x-scroll">
             <th>
@@ -62,7 +71,7 @@ const ParticipantsRow = ({ participant, index, refetch }) => {
                 {email}
             </td>
             <td>
-                <button className="btn btn-xs">View Task</button>
+                <button onClick={handleTask} className="btn btn-xs">View Task</button>
             </td>
             <td className={`${isWin ? 'text-green-600' : 'text-red-600'} font-bold`}>
                 {isWin ? <>winner</> : <>pending</>}
